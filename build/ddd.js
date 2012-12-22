@@ -36,7 +36,14 @@ Namespace('ddd.ui.createnewboard')
             performerId : window.performerId
         };
 
-        ns.getBoardService().postNewBoard(params);
+        var errorHandler = function (err) {
+            window.alert(err.message);
+        }
+
+        ns.tryCatch(
+            function () {
+                ns.getBoardService().postNewBoard(params);
+            }, errorHandler);
     };
 
     var CreateNewBoardButton = ns.defineClass({
@@ -262,11 +269,15 @@ Namespace('ddd.utils.misc')
         return object;
     }
 
-    var tryCatch = function _tryCatch(f) {
+    var tryCatch = function _tryCatch(f, handler) {
+        var h = handler;
+        if (!h) {
+            h = function () {};
+        }
         try {
             f();
         } catch (x) {
-            console.log(x.stack);
+            h(x);
         }
     }
 

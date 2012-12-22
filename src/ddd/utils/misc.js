@@ -135,11 +135,15 @@ Namespace('ddd.utils.misc')
         return object;
     }
 
-    var tryCatch = function _tryCatch(f) {
+    var tryCatch = function _tryCatch(f, handler) {
+        var h = handler;
+        if (!h) {
+            h = function () {};
+        }
         try {
             f();
         } catch (x) {
-            console.log(x.stack);
+            h(x);
         }
     }
 

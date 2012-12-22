@@ -14,7 +14,14 @@ Namespace('ddd.ui.createnewboard')
             performerId : window.performerId
         };
 
-        ns.getBoardService().postNewBoard(params);
+        var errorHandler = function (err) {
+            window.alert(err.message);
+        }
+
+        ns.tryCatch(
+            function () {
+                ns.getBoardService().postNewBoard(params);
+            }, errorHandler);
     };
 
     var CreateNewBoardButton = ns.defineClass({
