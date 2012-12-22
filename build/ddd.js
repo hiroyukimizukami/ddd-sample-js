@@ -342,32 +342,6 @@ Namespace('ddd.utils.misc')
         }
     });
 });
-Namespace('ddd.domain.valueobject.timestamp')
-.use('ddd.utils.misc defineClass,isEmptyString,matchType')
-.define(function (ns) {
-
-    //ValueObject must be immutable.
-    var TimestampIF = ['valueOf', 'after', 'before'];
-    var Timestamp = ns.defineClass({
-        initialize : function (v) {
-            this.value = v || new Date();
-        },
-        valueOf : function () {
-            return this.getTime();
-        },
-        before : function (timestamp) {
-            return this.getValue() < timestamp.getValue();
-        },
-        after : function (timestamp) {
-            return this.getValue() > timestamp.getValue();
-        }
-    });
-
-    ns.provide({
-        Timestamp : Timestamp,
-        TimestampIF : TimestampIF
-    });
-});
 Namespace('ddd.domain.service.board')
 .use('ddd.utils.misc *')
 .use('ddd.domain.entity.board *')
@@ -498,8 +472,6 @@ Namespace('ddd.domain.service.board')
             this.stateChangeObservers.findBoardList.push(f);
         },
         notifyTo : function(observers, data) {
-            console.log(observers);
-            console.log(data);
             if (!observers) {
                 return ;
             }
@@ -520,55 +492,6 @@ Namespace('ddd.domain.service.board')
             }
             return instanceAsSingleton;
         }
-    });
-});
-Namespace('ddd.domain.factory.board')
-.use('ddd.domain.entity.board Board,BoardIF')
-.use('ddd.domain.entity.member MemberIF')
-.use('ddd.domain.valueobject.timestamp TimestampIF')
-.use('ddd.utils.misc defineClass,matchType,getSupposedUniqueId')
-.define(function (ns) {
-
-    var instanceAsSingleton = null;
-
-    var BoardFactory = ns.defineClass({
-        initialize : function () {
-        },
-        create : function (member, title, text) {
-            var initializeParams = {
-                id : ns.getSupposedUniqueId(),
-                created_at : new ns.Timestamp(),
-                updated_at : undefined,
-                member : member,
-                title : title,
-                text : text,
-                comments : []
-            };
-
-            return new ns.Board(initializeParams);
-        }
-    });
-
-    ns.provide({
-        getBoardFactory : function () {
-            if ( !instanceAsSingleton ) {
-                instanceAsSingleton = new BoardFactory();
-            }
-            return instanceAsSingleton;
-        }
-    });
-
-});
-Namespace('ddd.domain.repository')
-.use('ddd.utils.misc')
-.define(function (ns) {
-    var RepositorySignature = ns.createSignature(
-        [],
-        ['add', 'drop', 'update', 'find', 'lookup']
-    );
-
-    ns.provide({
-        RepositorySignature : RepositorySignature
     });
 });
 Namespace('ddd.domain.entity.member')
@@ -770,7 +693,7 @@ try {
     repository[obj.id] = obj;
     updateIndex();
 } catch (x) {
-    console.log(x.stack);
+    
 }
 
     ns.provide({
