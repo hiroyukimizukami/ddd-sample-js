@@ -149,6 +149,19 @@ Namespace('ddd.utils.misc')
         return h.getByElementId(id);
     };
 
+    var formatDate = function _formatDate(date) {
+        if (!date) {
+            return date;
+        }
+        var yyyy = date.getFullYear();
+        var mm = date.getMonth();
+        var dd = date.getDate();
+        var hh = date.getHours();
+        var mi = date.getMinutes();
+        var sec = date.getSeconds();
+        return yyyy + '/' + mm + '/' + dd + ' ' + hh + ':' + mi + ":" + sec;
+    }
+
     ns.provide({
         defineClass : defineClass,
         isEmptyString : isEmptyString,
@@ -160,6 +173,7 @@ Namespace('ddd.utils.misc')
         toPlainObject : toPlainObject,
         getWhiteListChecker : getWhiteListChecker,
         tryCatch : tryCatch,
-        getTemplate : getTemplate
+        getTemplate : getTemplate,
+        formatDate : formatDate
     });
 });

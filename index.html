@@ -47,20 +47,25 @@
       <!--
           <h3>Board list</h3>
           <TMPL_IF NAME=boardList>
-            <ul data-role="listview">
+            <ul data-role="listview" class="JS_boardList">
               <TMPL_LOOP NAME=boardList>
-                <li data-board-id="<TMPL_VAR EXPR=escape(id)>"
-                    data-member-id="<TMPL_VAR EXPR=escape(memberId)>">
-                  <h3><TMPL_VAR EXPR=escape(title)></h3>
-                  <p><TMPL_VAR EXPR=escape(text)></p>
-                  <p><TMPL_VAR EXPR=escape(nickname)></p>
-                  <p><TMPL_VAR EXPR=escape(created_at)></p>
-                </li>
+                <TMPL_INCLUDE NAME=HTML_TEMPLATE_BOARD>
               </TMPL_LOOP>
             </ul>
             <TMPL_ELSE>
               <h5>No Post</h5>
           </TMPL_IF>
+      -->
+    </div>
+    <div id="HTML_TEMPLATE_BOARD">
+      <!--
+          <li class="ui-li ui-li-static ui-btn-up-c"
+              data-board-id="<TMPL_VAR EXPR=escape(id)>"
+              data-member-id="<TMPL_VAR EXPR=escape(memberId)>">
+            <h3 class="ui-li-heading"><TMPL_VAR EXPR=escape(title)></h3>
+            <p class="ui-li-desc"><TMPL_VAR EXPR=escape(text)></p>
+            <p class="ui-li-desc">Posted by : <TMPL_VAR EXPR=escape(nickname)> at <TMPL_VAR EXPR=escape(created_at)></p>
+          </li>
       -->
     </div>
     <script type="text/javascript" src="lib/namespace.js" ></script>
