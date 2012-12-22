@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- header meta values -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"  />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"  />
+    <link rel="stylesheet" type="text/css" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.css" />
+  </head>
+  <body>
+    <!-- content -->
+    <div data-role="page" data-title="DDD Sample">
+      <div id="headerArea" data-role="header">
+         <h1 id="header">Borad Sample</h1>
+         <a href="javascript:void(0);"
+            class="login-button widget"
+            data-widget-namespace="ddd.ui.login"
+            data-role="button"
+            data-inline="true">Login</a>
+      </div>
+      <div data-role="content">
+        <div class="content-primary">
+          <div class="widget" data-widget-namespace="ddd.ui.createnewboard"></div>
+          <hr/>
+          <div class="widget" data-widget-namespace="ddd.ui.boardlist"> </div>
+          <hr/>
+          </div><!-- /contetn primary -->
+        </div><!--/content -->
+      </div><!-- /page -->
+    <div id="HTML_TEMPLATE_NEWBOARDFORM">
+      <!--
+          <h3>Crete new board</h3>
+          <div id="boardCreate-errorArea"><span></span></div>
+          <div data-role="fieldcontain" class="ui-hide-label">
+            <label for="boardCreate-title">Title:</label>
+            <input type="text" id="boardCreate-title" value="" placeholder="Title"/>
+          </div>
+          <div data-role="fieldcontain" class="ui-hide-label">
+            <label for="boardCreate-text">Text</label>
+            <input type="text" id="boardCreate-text" value="" placeholder="Text"/>
+          </div>
+          <div>
+            <a href="javascript:void(0);" id="boardCreate-submitbutton" data-role="button" data-inline="true" data-theme="b">Submit</a>
+          </div>
+      -->
+    </div>
+    <div id="HTML_TEMPLATE_BOARDLIST">
+      <!--
+          <h3>Board list</h3>
+          <TMPL_IF NAME=boardList>
+            <ul data-role="listview">
+              <TMPL_LOOP NAME=boardList>
+                <li data-board-id="<TMPL_VAR EXPR=escape(id)>"
+                    data-member-id="<TMPL_VAR EXPR=escape(memberId)>">
+                  <h3><TMPL_VAR EXPR=escape(title)></h3>
+                  <p><TMPL_VAR EXPR=escape(text)></p>
+                  <p><TMPL_VAR EXPR=escape(nickname)></p>
+                  <p><TMPL_VAR EXPR=escape(created_at)></p>
+                </li>
+              </TMPL_LOOP>
+            </ul>
+            <TMPL_ELSE>
+              <h5>No Post</h5>
+          </TMPL_IF>
+      -->
+    </div>
+    <script type="text/javascript" src="lib/namespace.js" ></script>
+    <script type="text/javascript" src="lib/brook.js" ></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js" ></script>
+    <script type="text/javascript" src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js" ></script>
+    <script type="text/javascript" src="http://underscorejs.org/underscore-min.js" ></script>
+    <script type="text/javascript" src="http://epeli.github.com/underscore.string/lib/underscore.string.js"></script>
+    <script type="text/javascript" src="build/ddd.js" ></script>
+    <script type="text/javascript">
+      <!--
+          Namespace.use('brook.widget bindAllWidget').apply(function (ns) {
+          ns.bindAllWidget.run();
+          });
+        -->
+    </script>
+  </body>
+</html>
